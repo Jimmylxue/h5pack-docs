@@ -79,5 +79,18 @@ export default defineConfig({
 		socialLinks: [
 			{ icon: 'github', link: 'https://github.com/Jimmylxue/h5pack-core' },
 		],
+		search: {
+			provider: 'local',
+		},
+		logo: 'https://image.jimmyxuexue.top/img/icon%20(1).png', // 网站nav栏logo
 	},
+	head: [
+		[
+			'link',
+			{
+				rel: 'icon',
+				href: 'https://image.jimmyxuexue.top/img/icon%20(1).png',
+			},
+		],
+	],
 })
