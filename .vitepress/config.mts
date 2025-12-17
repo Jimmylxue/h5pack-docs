@@ -58,6 +58,15 @@ export default defineConfig({
 						{ text: 'output', link: '/reference/h5pack-json/output' },
 						{ text: 'log', link: '/reference/h5pack-json/log' },
 						{ text: 'registry', link: '/reference/h5pack-json/registry' },
+						{ text: 'buildFormat', link: '/reference/h5pack-json/buildFormat' },
+						{
+							text: 'APP_ANDROID_VERSION',
+							link: '/reference/h5pack-json/APP_ANDROID_VERSION',
+						},
+						{
+							text: 'APP_ANDROID_VERSION_CODE',
+							link: '/reference/h5pack-json/APP_ANDROID_VERSION_CODE',
+						},
 						{
 							text: 'nativePermission',
 							link: '/reference/h5pack-json/nativePermission',
