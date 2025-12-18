@@ -71,6 +71,16 @@ export default defineConfig({
 							text: 'nativePermission',
 							link: '/reference/h5pack-json/nativePermission',
 						},
+						{
+							text: 'keystorePath',
+							link: '/reference/h5pack-json/keystorePath',
+						},
+						{ text: 'keyAlias', link: '/reference/h5pack-json/keyAlias' },
+						{ text: 'keyPassword', link: '/reference/h5pack-json/keyPassword' },
+						{
+							text: 'storePassword',
+							link: '/reference/h5pack-json/storePassword',
+						},
 					],
 					collapsed: false,
 				},
