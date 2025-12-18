@@ -1,7 +1,7 @@
-# APP_ANDROID_VERSION_CODE
+# versionCode
 
 ```typescript
-type APP_ANDROID_VERSION_CODE = number
+type versionCode = number
 ```
 
 **选填**，App 出包之后的版本号代码，默认为 1。
