@@ -48,20 +48,28 @@ pnpm add h5ack
 
 :::
 
-## 配置
+## 生成配置文件
 
-项目根目录下新建 `h5pack.json` 并做如下配置：
+执行 `npx h5pack init` 会生成如下配置文件 `h5pack.json`：
 
 ```json
 {
 	"entry": "./dist", // h5项目打包入口
-	"name": "newApp", // app包名
+	"name": "H5PackApp", // app应用名
 	"splash": "./public/vite.svg", // app splash 启动页logo
 	"output": "./", // 打包完成后app 输出位置
 	"log": false, // 是否开启完整打包日志
 	"registry": "github", // github||gitee  资源镜像下载的地址，如因代理问题可以配置为gitee
 	"logo": "./src/assets/splash.svg", // app 在桌面显示的logo
-	"nativePermission": ["CAMERA", "LOCATION"] // 原生平台能力
+	"nativePermission": ["CAMERA", "LOCATION", "RECORD_AUDIO"], // 原生平台能力配置
+	"buildFormat": "apk", // 打包格式 apk||aab
+	"packageName": "com.h5pack.native", // 应用包名
+	"versionName": "1.0.0", // 应用版本名
+	"versionCode": "1", // 应用版本号
+	"keystorePath": "", // 应用签名文件路径
+	"storePassword": "", // 应用签名文件密码
+	"keyAlias": "", // 应用签名文件别名
+	"keyPassword": "" // 应用签名文件别名密码
 }
 ```
 
@@ -78,6 +86,14 @@ pnpm add h5ack
 ```sh
 npm run compress
 ```
+
+## 一键检查环境（打包异常时执行这个指令）
+
+```sh
+npx h5pack doctor
+```
+
+该指令会检查您的环境是否符合要求，包括 Node.js、包管理器、Java JDK、Android SDK Platform 等。
 
 ## 相关依赖
 
