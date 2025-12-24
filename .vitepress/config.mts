@@ -94,6 +94,10 @@ export default defineConfig({
 						{ text: 'introduce', link: '/reference/h5pack-bridge/base' },
 						{ text: 'camera', link: '/reference/h5pack-bridge/camera' },
 						{ text: 'location', link: '/reference/h5pack-bridge/location' },
+						{
+							text: 'recordAudio',
+							link: '/reference/h5pack-bridge/recordAudio',
+						},
 					],
 					collapsed: false,
 				},
