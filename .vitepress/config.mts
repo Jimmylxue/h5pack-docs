@@ -98,6 +98,7 @@ export default defineConfig({
 							text: 'recordAudio',
 							link: '/reference/h5pack-bridge/recordAudio',
 						},
+						{ text: 'app', link: '/reference/h5pack-bridge/app' },
 					],
 					collapsed: false,
 				},

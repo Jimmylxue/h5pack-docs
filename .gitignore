@@ -5,3 +5,5 @@
 .vitepress/cache/
 
 node_modules/
+
+.vitepress/dist/
