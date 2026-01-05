@@ -18,6 +18,8 @@ hero:
       link: /reference/h5pack-json/base
 
 features:
+  - title: 本地开发
+    details: 支持本地开发，实时预览，支持热更新。
   - title: 操作简单
     details: 支持 mac/windows一个指令，即可将 H5 直接打包成 Android APK
   - title: 跨平台

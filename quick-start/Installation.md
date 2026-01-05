@@ -77,20 +77,30 @@ pnpm add h5ack
 
 ```json
 "scripts": {
-  "compress": "npx h5pack"
+  "build": "npx h5pack",
+  "doctor": "npx h5pack doctor",
+  "dev": "npx h5pack dev"
 }
 ```
 
-## 运行
+## 打包
 
 ```sh
-npm run compress
+npm run build
+```
+
+## 开发
+
+支持本地开发，实时预览，支持热更新。（需要本地环境配置好 Android 环境，推荐使用 Android Studio 进行环境配置，[环境配置传送门](https://reactnative.dev/docs/0.73/environment-setup?platform=android)）
+
+```sh
+npm run dev
 ```
 
 ## 一键检查环境（打包异常时执行这个指令）
 
 ```sh
-npx h5pack doctor
+npm run doctor
 ```
 
 该指令会检查您的环境是否符合要求，包括 Node.js、包管理器、Java JDK、Android SDK Platform 等。
