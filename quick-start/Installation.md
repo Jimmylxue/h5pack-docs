@@ -93,6 +93,8 @@ npm run build
 
 支持本地开发，实时预览，支持热更新。（需要本地环境配置好 Android 环境，推荐使用 Android Studio 进行环境配置，[环境配置传送门](https://reactnative.dev/docs/0.73/environment-setup?platform=android)）
 
+Dev 模式请参考 [DEV 开发指南](/dev/introduce)
+
 ```sh
 npm run dev
 ```

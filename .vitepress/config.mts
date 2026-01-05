@@ -103,6 +103,7 @@ export default defineConfig({
 					collapsed: false,
 				},
 			],
+			dev: [{ text: '开发指南', link: '/dev/introduce' }],
 		},
 		socialLinks: [
 			{ icon: 'github', link: 'https://github.com/Jimmylxue/h5pack-core' },

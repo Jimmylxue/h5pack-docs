@@ -20,10 +20,14 @@ hero:
 features:
   - title: 本地开发
     details: 支持本地开发，实时预览，支持热更新。
+    link: /dev/introduce
+  - title: Bridge
+    details: 拥有直接调用原生APP平台能力的 Bridge 库
+    link: /reference/h5pack-bridge/base
   - title: 操作简单
     details: 支持 mac/windows一个指令，即可将 H5 直接打包成 Android APK
+    link: /quick-start
   - title: 跨平台
-    details: 支持 mac/windows/linux
-  - title: Bridge
-    details: 拥有直接调用原生APP平台能力
+    details: 支持 mac/windows/linux 等多个平台
+    link: /quick-start
 ---
