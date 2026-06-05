@@ -4,30 +4,34 @@ layout: home
 
 hero:
   name: 'H5Pack'
-  text: 'APP 打包解决方案'
-  tagline: 让 H5 拥有原生的力量，简化跨平台应用开发流程。
+  text: '一行命令，网页变 App'
+  tagline: 不学 Java，不装 Android Studio，把你现有的 H5 项目直接打包成可上架的 Android 应用。
   image:
     src: https://image.jimmyxuexue.top/img/icon%20(1).png
     alt: logo
   actions:
     - theme: brand
-      text: 开始
+      text: 三分钟上手
       link: /quick-start
     - theme: alt
-      text: API参考
+      text: API 参考
       link: /reference/h5pack-json/base
 
 features:
-  - title: 本地开发
-    details: 支持本地开发，实时预览，支持热更新。
-    link: /dev/introduce
-  - title: Bridge
-    details: 拥有直接调用原生APP平台能力的 Bridge 库
-    link: /reference/h5pack-bridge/base
-  - title: 操作简单
-    details: 支持 mac/windows一个指令，即可将 H5 直接打包成 Android APK
+  - icon: ⚡
+    title: 快 — 一条命令搞定
+    details: 写好 h5pack.json，执行 npx h5pack，APK 直接产出。不需要 Android Studio，不需要配置 Gradle。
     link: /quick-start
-  - title: 跨平台
-    details: 支持 mac/windows/linux 等多个平台
+  - icon: 🔌
+    title: 强 — H5 也能调用原生能力
+    details: 通过 Bridge 模块，你的 H5 代码可以直接调用相机、GPS、麦克风、相册等原生能力，和真正的 App 一样。
+    link: /reference/h5pack-bridge/base
+  - icon: 🛠️
+    title: 爽 — 开发体验拉满
+    details: 本地 Dev 模式支持热更新，改完代码秒刷新，所见即所得。
+    link: /dev/introduce
+  - icon: 🖥️
+    title: 稳 — 全平台支持
+    details: macOS、Windows、Linux 均可使用，也支持 Docker 一键构建，无需本地环境。
     link: /quick-start
 ---
