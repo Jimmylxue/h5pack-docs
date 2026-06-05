@@ -57,6 +57,7 @@ export default defineConfig({
 						{ text: 'logo', link: '/reference/h5pack-json/logo' },
 						{ text: 'output', link: '/reference/h5pack-json/output' },
 						{ text: 'log', link: '/reference/h5pack-json/log' },
+						{ text: 'cache', link: '/reference/h5pack-json/cache' },
 						{ text: 'registry', link: '/reference/h5pack-json/registry' },
 						{ text: 'buildFormat', link: '/reference/h5pack-json/buildFormat' },
 						{

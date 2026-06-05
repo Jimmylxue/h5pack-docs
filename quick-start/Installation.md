@@ -59,9 +59,10 @@ pnpm add h5pack
 	"splash": "./public/vite.svg", // app splash 启动页logo
 	"output": "./", // 打包完成后app 输出位置
 	"log": false, // 是否开启完整打包日志
+	"cache": false, // 是否开启构建缓存
 	"registry": "github", // github||gitee  资源镜像下载的地址，如因代理问题可以配置为gitee
 	"logo": "./src/assets/splash.svg", // app 在桌面显示的logo
-	"nativePermission": ["CAMERA", "LOCATION", "RECORD_AUDIO"], // 原生平台能力配置
+	"nativePermission": ["CAMERA", "LOCATION", "RECORD_AUDIO", "PHOTO_LIBRARY"], // 原生平台能力配置
 	"buildFormat": "apk", // 打包格式 apk||aab
 	"packageName": "com.h5pack.native", // 应用包名
 	"versionName": "1.0.0", // 应用版本名
