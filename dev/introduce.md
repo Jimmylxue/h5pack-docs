@@ -31,7 +31,7 @@ h5pack dev [options]
 如果你已经打包好了 H5 产物（例如 `dist` 目录），希望在 App 中预览，并支持修改后自动同步：
 
 ```bash
-# 假设 h5pack.config.json 中 entry 指向了 ./dist
+# 假设 h5pack.json 中 entry 指向了 ./dist
 h5pack dev --watch --start
 ```
 
@@ -65,4 +65,4 @@ h5pack dev --server=5173 --reverse=5173 --start
 
 1.  **环境要求**：运行 `dev` 指令前，请确保已正确配置 Android 开发环境（Java, Android SDK, ADB）。
 2.  **首次运行**：首次运行会自动拉取 `h5pack-native` 模版代码并安装依赖（yarn），这可能需要一些时间。
-3.  **配置文件**：`dev` 模式下，依然会读取 `h5pack.config.json` 中的 `splash` (启动页) 和 `logo` (图标) 配置并应用。
+3.  **配置文件**：`dev` 模式下，依然会读取 `h5pack.json` 中的 `splash` (启动页) 和 `logo` (图标) 配置并应用。

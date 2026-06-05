@@ -43,7 +43,7 @@ yarn add h5pack
 ```
 
 ```sh [pnpm]
-pnpm add h5ack
+pnpm add h5pack
 ```
 
 :::
