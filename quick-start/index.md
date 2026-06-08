@@ -1,5 +1,9 @@
 # h5pack — 把网页变成 App 的最短路径
 
+::: warning 平台支持
+目前仅支持打包为 **Android APK**，iOS 暂不支持。
+:::
+
 ## 它是什么
 
 h5pack 是一个 H5 → Android APK 的打包工具。你不需要学 Java/Kotlin，不需要安装 Android Studio，不需要折腾 Gradle。只需要一个配置文件和一条命令，就能把你现有的 Web 项目打包成一个可以安装、可以上架的 Android 应用。

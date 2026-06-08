@@ -5,7 +5,7 @@ layout: home
 hero:
   name: 'H5Pack'
   text: '一行命令，网页变 App'
-  tagline: 不学 Java，不装 Android Studio，把你现有的 H5 项目直接打包成可上架的 Android 应用。
+  tagline: 不学 Java，不装 Android Studio，把你现有的 H5 项目直接打包成 Android APK。（目前仅支持 Android）
   image:
     src: https://image.jimmyxuexue.top/img/icon%20(1).png
     alt: logo
