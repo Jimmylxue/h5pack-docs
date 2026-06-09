@@ -48,6 +48,19 @@ interface ImageLibraryOptions extends OptionsCommon {
     selectionLimit?: number;
     restrictMimeTypes?: string[];
 }
+
+/**
+ * 权限申请结果状态
+ * - granted: 已授权
+ * - denied: 被拒绝（可再次申请）
+ * - never_ask_again: 被永久拒绝（需引导用户去设置页）
+ */
+type PermissionStatus = 'granted' | 'denied' | 'never_ask_again';
+
+type PermissionResult = {
+    granted: boolean;
+    status: PermissionStatus;
+};
 ```
 
 ---
@@ -78,18 +91,46 @@ h5packBridge.camera.checkPermission().then(res => {
 
 申请相机权限。（调用之后 App 会有权限申请的弹窗）
 
+返回结果包含 `granted` 和 `status` 字段，可区分三种状态：
+- `granted`: 已授权
+- `denied`: 被拒绝（可再次申请）
+- `never_ask_again`: 被永久拒绝（需引导用户去设置页手动开启）
+
 - 类型
 
 ```typescript
-requestPermission(): Promise<unknown>;
+requestPermission(): Promise<PermissionResult | void>;
 ```
 
 - 使用
 
 ```typescript
 h5packBridge.camera.requestPermission().then(res => {
-	console.log('requestPermission', res)
+    if (res?.granted) {
+        console.log('已获得相机权限')
+    } else if (res?.status === 'never_ask_again') {
+        // 需要引导用户去设置页
+        h5packBridge.camera.openAppSettings()
+    } else {
+        console.log('用户拒绝了相机权限')
+    }
 })
+```
+
+### openAppSettings
+
+跳转应用详情设置页。用于权限被永久拒绝（`never_ask_again`）时引导用户手动开启权限。
+
+- 类型
+
+```typescript
+openAppSettings(): void;
+```
+
+- 使用
+
+```typescript
+h5packBridge.camera.openAppSettings()
 ```
 
 ### open
@@ -108,6 +149,26 @@ open(options: CameraOptions): Promise<void | TAsset>;
 h5packBridge.camera.open().then(res => {
 	console.log('拍照res', res)
 })
+```
+
+- 错误处理
+
+```typescript
+try {
+    const res = await h5packBridge.camera.open()
+} catch (error) {
+    switch (error.code) {
+        case 'CAMERA_PERMISSION_DENIED':
+            // 权限被拒绝，可再次申请
+            break
+        case 'CAMERA_PERMISSION_NEVER_ASK_AGAIN':
+            // 权限被永久拒绝，引导用户去设置页
+            h5packBridge.camera.openAppSettings()
+            break
+        default:
+            console.error('拍照失败:', error.message)
+    }
+}
 ```
 
 ### scan
@@ -160,17 +221,25 @@ h5packBridge.camera.checkPhotoLibraryPermission().then(res => {
 
 申请相册权限。（调用之后 App 会有权限申请的弹窗）
 
+返回结果与 `requestPermission` 相同，包含 `granted` 和 `status` 字段。
+
 - 类型
 
 ```typescript
-requestPhotoLibraryPermission(): Promise<unknown>;
+requestPhotoLibraryPermission(): Promise<PermissionResult | void>;
 ```
 
 - 使用
 
 ```typescript
 h5packBridge.camera.requestPhotoLibraryPermission().then(res => {
-	console.log('requestPhotoLibraryPermission', res)
+    if (res?.granted) {
+        console.log('已获得相册权限')
+    } else if (res?.status === 'never_ask_again') {
+        h5packBridge.camera.openAppSettings()
+    } else {
+        console.log('用户拒绝了相册权限')
+    }
 })
 ```
 
@@ -191,6 +260,40 @@ h5packBridge.camera.chooseImage().then(res => {
 	console.log('chooseImage', res)
 })
 ```
+
+- 错误处理
+
+```typescript
+try {
+    const res = await h5packBridge.camera.chooseImage()
+} catch (error) {
+    switch (error.code) {
+        case 'PHOTO_LIBRARY_PERMISSION_DENIED':
+            // 权限被拒绝，可再次申请
+            break
+        case 'PHOTO_LIBRARY_PERMISSION_NEVER_ASK_AGAIN':
+            // 权限被永久拒绝，引导用户去设置页
+            h5packBridge.camera.openAppSettings()
+            break
+        default:
+            console.error('选择图片失败:', error.message)
+    }
+}
+```
+
+---
+
+## 错误码
+
+| 错误码 | 说明 | 建议处理方式 |
+|---|---|---|
+| `CAMERA_PERMISSION_DENIED` | 相机权限被拒绝（可再次申请） | 可重新调用 `requestPermission()` |
+| `CAMERA_PERMISSION_NEVER_ASK_AGAIN` | 相机权限被永久拒绝 | 调用 `openAppSettings()` 引导用户手动开启 |
+| `PHOTO_LIBRARY_PERMISSION_DENIED` | 相册权限被拒绝（可再次申请） | 可重新调用 `requestPhotoLibraryPermission()` |
+| `PHOTO_LIBRARY_PERMISSION_NEVER_ASK_AGAIN` | 相册权限被永久拒绝 | 调用 `openAppSettings()` 引导用户手动开启 |
+| `CAMERA_ERROR` | 相机操作失败（拍照、扫码等） | 提示用户稍后重试 |
+| `PERMISSION_CHECK_ERROR` | 权限检查失败 | 系统异常，提示用户稍后重试 |
+| `PERMISSION_REQUEST_ERROR` | 权限申请失败 | 系统异常，提示用户稍后重试 |
 
 ---
 

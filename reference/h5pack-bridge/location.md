@@ -100,6 +100,10 @@ h5packBridge.location.requestPermission().then(res => {
 
 ## 定位服务
 
+::: tip H5 侧独立调用
+以下 `checkLocationEnabled`、`openLocationSettings`、`openAppSettings` 均可从 H5 侧独立调用，无需通过 `getCurrentPosition` 间接触发。这使得 H5 业务层可以灵活地实现自定义的权限引导流程。
+:::
+
 ### checkLocationEnabled
 
 检查系统定位服务是否开启（GPS 或网络定位任一开启即返回 `true`）
