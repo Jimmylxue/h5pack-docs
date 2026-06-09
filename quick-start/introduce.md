@@ -38,3 +38,21 @@ h5pack-core（读配置、调度一切）
     │
     └── h5pack-native（构建 APK，内置 h5pack-bridge）
 ```
+
+## 包体优化
+
+h5pack 构建的 APK 约 **18MB**，通过以下优化手段实现：
+
+| 优化项 | 说明 |
+|--------|------|
+| R8 代码混淆 | 开启 `minifyEnabled`，删除无用代码、混淆类名，减小 dex 体积 |
+| 资源收缩 | 开启 `shrinkResources`，移除未引用的资源文件 |
+| so 库压缩 | 仅保留 armeabi-v7a 和 arm64-v8a 两种架构，排除 x86 等模拟器架构 |
+| ProGuard 规则 | 针对 React Native、Hermes、MLKit 等模块精确配置 keep 规则，确保混淆后功能正常 |
+
+构建后可运行体积分析脚本查看详细占比：
+
+```bash
+cd h5packNative
+./scripts/analyze-apk.sh
+```
