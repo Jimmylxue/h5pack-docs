@@ -41,14 +41,15 @@ h5pack-core（读配置、调度一切）
 
 ## 包体优化
 
-h5pack 构建的 APK 约 **18MB**，通过以下优化手段实现：
+h5pack 构建的 APK 仅约 **12.6MB**，通过以下优化手段实现：
 
 | 优化项 | 说明 |
 |--------|------|
 | R8 代码混淆 | 开启 `minifyEnabled`，删除无用代码、混淆类名，减小 dex 体积 |
 | 资源收缩 | 开启 `shrinkResources`，移除未引用的资源文件 |
 | so 库压缩 | 仅保留 armeabi-v7a 和 arm64-v8a 两种架构，排除 x86 等模拟器架构 |
-| ProGuard 规则 | 针对 React Native、Hermes、MLKit 等模块精确配置 keep 规则，确保混淆后功能正常 |
+| 可选能力裁剪 | 扫码等能力默认关闭，不引入 MLKit 等依赖，按需开启 |
+| ProGuard 规则 | 针对 React Native、Hermes 等模块精确配置 keep 规则，确保混淆后功能正常 |
 
 构建后可运行体积分析脚本查看详细占比：
 
@@ -56,3 +57,23 @@ h5pack 构建的 APK 约 **18MB**，通过以下优化手段实现：
 cd h5packNative
 ./scripts/analyze-apk.sh
 ```
+
+## 可选能力
+
+部分原生能力默认关闭以减小包体，按需开启：
+
+### 扫码（MLKit barcode-scanning）
+
+扫码功能默认关闭，不引入 MLKit 依赖（节省约 2~3MB）。开启方式：
+
+在 `h5pack.json` 中设置：
+
+```json
+{
+  "scanEnabled": true
+}
+```
+
+开启后，Bridge 中的 `camera.scan()` 方法可用，支持 QR 码、EAN-13、CODE-128 等格式。
+
+> 未开启时调用 `camera.scan()` 会返回错误码 `SCAN_NOT_ENABLED`。

@@ -23,8 +23,8 @@ features:
     details: 写好 h5pack.json，执行 npx h5pack，APK 直接产出。不需要 Android Studio，不需要配置 Gradle。
     link: /quick-start
   - icon: 📦
-    title: 小 — 包体仅 18MB
-    details: 启用 R8 代码混淆、资源收缩和 so 库压缩，产出的 APK 仅约 18MB，远低于同类方案。
+    title: 小 — 包体仅 12.6MB
+    details: 启用 R8 代码混淆、资源收缩、可选能力裁剪，产出的 APK 仅约 12.6MB，远低于同类方案。
     link: /quick-start
   - icon: 🔌
     title: 强 — H5 也能调用原生能力

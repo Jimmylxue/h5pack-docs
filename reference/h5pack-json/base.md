@@ -25,5 +25,6 @@ export type TPackConfig = {
 	packageName?: string
 	versionName?: string
 	versionCode?: string
+	scanEnabled?: boolean   // 是否启用扫码能力，默认 false（不引入 MLKit，节省约 2~3MB）
 }
 ```

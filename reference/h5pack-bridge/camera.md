@@ -173,12 +173,12 @@ try {
 
 ### scan
 
-打开扫码功能
+打开扫码功能。需要在 `h5pack.json` 中配置 `"scanEnabled": true` 才可使用（默认关闭以减小包体）。
 
 - 类型
 
 ```typescript
-scan(): Promise<void | TAsset>;
+scan(): Promise<string>;
 ```
 
 - 使用
@@ -187,6 +187,20 @@ scan(): Promise<void | TAsset>;
 h5packBridge.camera.scan().then(res => {
 	console.log('扫码res', res)
 })
+```
+
+- 错误处理
+
+未开启扫码时调用会返回 `SCAN_NOT_ENABLED` 错误码：
+
+```typescript
+try {
+    const res = await h5packBridge.camera.scan()
+} catch (error) {
+    if (error.code === 'SCAN_NOT_ENABLED') {
+        console.log('请在 h5pack.json 中设置 scanEnabled: true')
+    }
+}
 ```
 
 ---
@@ -292,6 +306,7 @@ try {
 | `PHOTO_LIBRARY_PERMISSION_DENIED` | 相册权限被拒绝（可再次申请） | 可重新调用 `requestPhotoLibraryPermission()` |
 | `PHOTO_LIBRARY_PERMISSION_NEVER_ASK_AGAIN` | 相册权限被永久拒绝 | 调用 `openAppSettings()` 引导用户手动开启 |
 | `CAMERA_ERROR` | 相机操作失败（拍照、扫码等） | 提示用户稍后重试 |
+| `SCAN_NOT_ENABLED` | 扫码功能未开启 | 在 h5pack.json 中设置 scanEnabled: true |
 | `PERMISSION_CHECK_ERROR` | 权限检查失败 | 系统异常，提示用户稍后重试 |
 | `PERMISSION_REQUEST_ERROR` | 权限申请失败 | 系统异常，提示用户稍后重试 |
 
