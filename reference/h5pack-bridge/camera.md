@@ -191,3 +191,36 @@ h5packBridge.camera.chooseImage().then(res => {
 	console.log('chooseImage', res)
 })
 ```
+
+---
+
+## 分区存储与路径语义
+
+Android 10（API 29）起引入了**分区存储**（Scoped Storage），对相机和相册的文件访问方式产生了重要影响。h5pack 已完成适配，以下是开发者需要了解的要点。
+
+### 返回值 `uri` 字段说明
+
+`open` 和 `chooseImage` 返回的 `TAsset.uri` 在不同场景下的格式：
+
+| 来源 | URI 格式 | 说明 |
+|------|----------|------|
+| 拍照（`open`） | `file:///data/.../cache/...` | image-picker 将拍照结果存入 app 缓存目录 |
+| 相册选择（`chooseImage`） | `file:///data/.../cache/...` | image-picker 将 content URI 复制到缓存后返回 |
+
+> h5pack 内部使用 `react-native-fs` 读取文件，其原生端通过 `ContentResolver` 同时支持 `file://` 和 `content://` URI。即使未来 image-picker 行为变更直接返回 `content://` URI，读取也不会中断。
+
+### 权限策略
+
+h5pack 构建工具会根据目标 API 级别自动注入正确的权限声明：
+
+| API 级别 | 系统版本 | 所需权限 |
+|----------|----------|----------|
+| ≤ 28 | Android 9 及以下 | `CAMERA` + `WRITE_EXTERNAL_STORAGE` + `READ_EXTERNAL_STORAGE` |
+| 29–32 | Android 10–12L | `CAMERA` + `READ_EXTERNAL_STORAGE` |
+| ≥ 33 | Android 13+ | `CAMERA` + `READ_MEDIA_IMAGES` |
+
+以上权限由 `h5pack.json` 中的 `nativePermission` 配置项控制，构建时自动处理 `maxSdkVersion` 标记，无需手动管理。
+
+### `saveToPhotos` 选项
+
+`CameraOptions.saveToPhotos` 默认为 `false`。当设为 `true` 时，拍照结果会同时保存到系统相册。此功能需要通过 `MediaStore` API 写入公共存储，当前版本暂不支持，将在后续版本中适配。
