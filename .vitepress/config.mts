@@ -86,6 +86,10 @@ export default defineConfig({
 							text: 'storePassword',
 							link: '/reference/h5pack-json/storePassword',
 						},
+						{
+							text: 'bridgeDebugPanel',
+							link: '/reference/h5pack-json/bridgeDebugPanel',
+						},
 					],
 					collapsed: false,
 				},

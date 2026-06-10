@@ -26,5 +26,6 @@ export type TPackConfig = {
 	versionName?: string
 	versionCode?: string
 	scanEnabled?: boolean   // 是否启用扫码能力，默认 false（不引入 MLKit，节省约 2~3MB）
+	bridgeDebugPanel?: boolean   // 是否开启 Bridge 调试面板，默认 false
 }
 ```
